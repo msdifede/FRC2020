@@ -10,6 +10,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -32,7 +33,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSub drivetrain = new DriveSub(new TalonFX(Constants.FR_FALCON), new TalonFX(Constants.FL_FALCON),
       new TalonFX(Constants.BR_FALCON), new TalonFX(Constants.BL_FALCON));
-  private final Launcher launcher = new Launcher( new TalonSRX( Constants.LAUNCHER1) , new TalonSRX( Constants.LAUNCHER2));
+
+  private final Encoder shooterEncoder = new Encoder( 1, 2, 3, true );
+
+
+  private final Launcher launcher = new Launcher( new TalonSRX( Constants.LAUNCHER1) , new TalonSRX( Constants.LAUNCHER2),  shooterEncoder);
   
   private final Joystick driver =  new Joystick(Constants.DRIVER_PORT);
 
