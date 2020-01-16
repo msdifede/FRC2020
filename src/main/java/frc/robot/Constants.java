@@ -29,22 +29,20 @@ public class Constants {
     public static int DRIVER_RIGHT_Y = 5;
 
     public static final int A_BUTTON = 1;
+    public static final int B_BUTTON = 2;
+    public static final int X_BUTTON = 3;
 
     public static final int LAUNCHER1 = 22;
     public static final int LAUNCHER2 = 25;
 
 
 
-  
-        public static final int[] kEncoderPorts = new int[]{4, 5};
-        public static final boolean kEncoderReversed = false;
-        public static final int kEncoderCPR = 1024;
+
+        public static final int kEncoderCPR = 8192; // 2048;//8192;
         public static final double kEncoderDistancePerPulse =
             // Distance units will be rotations
             1.0 / (double) kEncoderCPR;
-    
-        public static final int kShooterMotorPort = 4;
-        public static final int kFeederMotorPort = 5;
+
     
         public static final double kShooterFreeRPS = 5300;
         public static final double kShooterTargetRPS = 4000;

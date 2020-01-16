@@ -18,7 +18,10 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Launcher;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -36,8 +39,9 @@ public class RobotContainer {
 
   private final Encoder shooterEncoder = new Encoder( 1, 2, 3, true );
 
+  private final Shooter shooter = new Shooter( new TalonSRX( Constants.LAUNCHER1) , new TalonSRX( Constants.LAUNCHER2),  shooterEncoder);
 
-  private final Launcher launcher = new Launcher( new TalonSRX( Constants.LAUNCHER1) , new TalonSRX( Constants.LAUNCHER2),  shooterEncoder);
+  //private final Launcher launcher = new Launcher( new TalonSRX( Constants.LAUNCHER1) , new TalonSRX( Constants.LAUNCHER2),  shooterEncoder);
   
   private final Joystick driver =  new Joystick(Constants.DRIVER_PORT);
 
@@ -69,13 +73,35 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    JoystickButton driver_A = new JoystickButton(driver, Constants.A_BUTTON);
+    // JoystickButton driver_A = new JoystickButton(driver, Constants.A_BUTTON);
 
-    //Move motor at 100% speed when A is pressed, move at 0 when released
-    driver_A.whenPressed( new RunCommand(() -> launcher.spin(
-      1), launcher));
-    driver_A.whenReleased( new RunCommand(() -> launcher.spin(
-      0), launcher));
+    // //Move motor at 100% speed when A is pressed, move at 0 when released
+    // driver_A.whenPressed( new RunCommand(() -> launcher.spin(
+    //   1), launcher));
+    // driver_A.whenReleased( new RunCommand(() -> launcher.spin(
+    //   0), launcher));
+
+
+      new JoystickButton(driver, Constants.A_BUTTON)
+      .whenPressed(new InstantCommand(shooter::enable, shooter));
+
+  // Turn off the shooter when the 'B' button is pressed
+  new JoystickButton(driver, Constants.B_BUTTON)
+      .whenPressed(new InstantCommand(shooter::disable, shooter));
+
+  // Run the feeder when the 'X' button is held, but only if the shooter is at speed
+  new JoystickButton(driver, Constants.X_BUTTON).whenPressed(new ConditionalCommand(
+      // Run the feeder
+      new InstantCommand(shooter::runFeeder, shooter),
+      // Do nothing
+      new InstantCommand(),
+      // Determine which of the above to do based on whether the shooter has reached the
+      // desired speed
+      shooter::atSetpoint)).whenReleased(new InstantCommand(shooter::stopFeeder, shooter));
+
+
+
+
 
   }
 

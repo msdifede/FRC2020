@@ -1,3 +1,5 @@
+package frc.robot.subsystems;
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -13,6 +15,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import frc.robot.Constants;
 
@@ -48,7 +51,9 @@ private final SimpleMotorFeedforward m_shooterFeedforward =
 
   @Override
   public double getMeasurement() {
+    SmartDashboard.putNumber("Shooter Encoder: ", shaftEncoder.getRate());
     return shaftEncoder.getRate();
+
   }
 
   public boolean atSetpoint() {
