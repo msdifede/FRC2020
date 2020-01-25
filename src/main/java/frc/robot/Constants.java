@@ -16,10 +16,27 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
-    public static final int FR_FALCON = 15;
-    public static final int FL_FALCON = 0;
-    public static final int BR_FALCON = 14;
-    public static final int BL_FALCON = 1;
+    public static final int FR_FALCON = 0;
+    public static final int FL_FALCON = 14;
+    public static final int BR_FALCON = 1;
+    public static final int BL_FALCON = 15;
+
+    public static final int INTAKE_TALON = 22;
+
+    public static final int CARWASH_VICTOR1 = 4;
+    public static final int CARWASH_VICTOR2 = 6;
+
+    public static final int PRESHOOTER_VICTOR1 = 23;
+    public static final int PRESHOOTER_VICTOR2 = 24;
+
+    
+    public static final int INTAKE_DOUBLESOLENOID_LEFT1 = 0;
+    public static final int INTAKE_DOUBLESOLENOID_LEFT2 = 1;
+    public static final int INTAKE_DOUBLESOLENOID_RIGHT1 = 2;
+    public static final int INTAKE_DOUBLESOLENOID_RIGHT2 = 3;
+
+    public static final int LAUNCHER1 =26;
+    public static final int LAUNCHER2 = 29;
 
 
     public static final int DRIVER_PORT = 0;
@@ -31,9 +48,12 @@ public class Constants {
     public static final int A_BUTTON = 1;
     public static final int B_BUTTON = 2;
     public static final int X_BUTTON = 3;
+    public static final int Y_BUTTON = 4;
+    public static final int TRIGGER_LEFT = 5;
+    public static final int TRIGGER_RIGHT = 6;
 
-    public static final int LAUNCHER1 = 22;
-    public static final int LAUNCHER2 = 25;
+
+
 
 
 

@@ -20,24 +20,35 @@ public class Launcher extends SubsystemBase {
 
   private TalonSRX motor1;
   private TalonSRX motor2;
-  private Encoder shaftEncoder;
+  //private Encoder shaftEncoder;
   
   public Launcher(TalonSRX m1, TalonSRX m2, Encoder e1) {
     motor1 = m1;
     motor2 = m2;
-    shaftEncoder = e1;
+    //shaftEncoder = e1;
   
     motor2.follow(m1);
     motor1.setInverted(false);
-    motor2.setInverted(InvertType.FollowMaster);
+    motor2.setInverted(InvertType.OpposeMaster);
 
   }
 
   public void spin(double speed){
     motor1.set(ControlMode.PercentOutput, speed);
-    SmartDashboard.putNumber("Shooter Encoder: ", shaftEncoder.getRate());
-    System.out.println( shaftEncoder.getRate() );
+  //  SmartDashboard.putNumber("Shooter Encoder: ", shaftEncoder.getRate());
+  //  System.out.println( shaftEncoder.getRate() );
   }
+
+  public void spin(){
+    motor1.set(ControlMode.PercentOutput, .8);
+  // SmartDashboard.putNumber("Shooter Encoder: ", shaftEncoder.getRate());
+   // System.out.println( shaftEncoder.getRate() );
+  }
+
+  public void stop(){
+    motor1.set(ControlMode.PercentOutput, 0);
+  }
+
 
   @Override
   public void periodic() {
