@@ -10,6 +10,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveSub; 
@@ -23,7 +24,7 @@ import frc.robot.subsystems.DriveSub;
 public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
-
+  private Command teleopInitCommand;
   private RobotContainer m_robotContainer;
 
   /**
@@ -36,6 +37,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+
+
   }
 
   /**
@@ -83,6 +87,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+   
   }
 
   @Override
@@ -94,6 +99,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    teleopInitCommand = m_robotContainer.getTeleopInitCommand();
+
+    // schedule the autonomous command (example)
+    if (teleopInitCommand != null) {
+      teleopInitCommand.schedule();
+    }
+
+
   }
 
   /**
@@ -101,6 +115,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    m_robotContainer.postToSmartDashboard();
+   
   }
 
   @Override

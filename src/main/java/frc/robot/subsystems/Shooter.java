@@ -39,9 +39,9 @@ private final SimpleMotorFeedforward m_shooterFeedforward =
       motor2 = m2;
       shaftEncoder = e1;
                                  
-      motor2.follow(m1);
+     // motor2.follow(m1);
       motor1.setInverted(false);
-      motor2.setInverted(InvertType.FollowMaster);                          
+     // motor2.setInverted(InvertType.FollowMaster);                          
    }
 
   @Override

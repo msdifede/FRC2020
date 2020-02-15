@@ -12,12 +12,10 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class PreShooter extends SubsystemBase {
-  private VictorSPX entryMotor;
-  private VictorSPX exitMotor;
-  public PreShooter(VictorSPX m1, VictorSPX m2) {
-    entryMotor = m1;
-    exitMotor = m2;
+public class Climber extends SubsystemBase {
+  VictorSPX motor;
+  public Climber(VictorSPX m) {
+    motor = m;
 
   }
 
@@ -27,26 +25,8 @@ public class PreShooter extends SubsystemBase {
   }
 
   public void move(double speed){
-    entryMotor.set(ControlMode.PercentOutput, -speed);
-    exitMotor.set(ControlMode.PercentOutput, speed);
-  }
-
-  public void moveEntryMotor( double speed ){
-    entryMotor.set(ControlMode.PercentOutput, -speed);
-  }
-
-  public void moveExitMotor( double speed ){
-    exitMotor.set(ControlMode.PercentOutput, speed);
+    motor.set(ControlMode.PercentOutput, speed);
   }
 
 
-  public void move(){
-    entryMotor.set(ControlMode.PercentOutput, -.5);
-    exitMotor.set(ControlMode.PercentOutput, .5);
-  }
-
-  public void stop(){
-    entryMotor.set(ControlMode.PercentOutput, 0);
-    exitMotor.set(ControlMode.PercentOutput, 0);
-  }
 }

@@ -15,15 +15,13 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
-  private DoubleSolenoid piston1;
-  private DoubleSolenoid piston2;
+  private DoubleSolenoid pistons;
   private TalonSRX rollyBar;
   private boolean isOpen;
   
 
-  public Intake(DoubleSolenoid p1, DoubleSolenoid p2, TalonSRX rb) {
-    piston1 = p1;
-    piston2 = p2;
+  public Intake(DoubleSolenoid p, TalonSRX rb) {
+    pistons = p;
     rollyBar = rb;
     isOpen = false;
 
@@ -36,12 +34,12 @@ public class Intake extends SubsystemBase {
 
   public void move(double speed){
     //System.out.println("speed:" + speed);
-    rollyBar.set(ControlMode.PercentOutput, speed);
+    rollyBar.set(ControlMode.PercentOutput, -speed);
   }
 
   public void move(){
     //System.out.println("speed:" + speed);
-    rollyBar.set(ControlMode.PercentOutput, 1);
+    rollyBar.set(ControlMode.PercentOutput,-.75);
   }
 
   public void stop(){
@@ -49,22 +47,19 @@ public class Intake extends SubsystemBase {
   }
 
   public void open() {
-    piston1.set(DoubleSolenoid.Value.kForward);
-    piston2.set(DoubleSolenoid.Value.kForward);
+    pistons.set(DoubleSolenoid.Value.kForward);
     isOpen = true;
     
 	}
 	
 	public void close() {
-    piston1.set(DoubleSolenoid.Value.kReverse);
-    piston2.set(DoubleSolenoid.Value.kReverse);
+    pistons.set(DoubleSolenoid.Value.kReverse);
     isOpen = false;
     
 	}
 	
 	public void off() {
-    piston1.set(DoubleSolenoid.Value.kOff);
-    piston2.set(DoubleSolenoid.Value.kOff);
+    pistons.set(DoubleSolenoid.Value.kOff);
   }
   
   public boolean getIsOpen(){

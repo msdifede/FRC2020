@@ -27,7 +27,7 @@ public class Launcher extends SubsystemBase {
     motor2 = m2;
     //shaftEncoder = e1;
   
-    motor2.follow(m1);
+    motor2.follow(motor1);
     motor1.setInverted(false);
     motor2.setInverted(InvertType.OpposeMaster);
 
@@ -40,13 +40,17 @@ public class Launcher extends SubsystemBase {
   }
 
   public void spin(){
-    motor1.set(ControlMode.PercentOutput, .8);
+    motor1.set(ControlMode.PercentOutput, 1);
   // SmartDashboard.putNumber("Shooter Encoder: ", shaftEncoder.getRate());
    // System.out.println( shaftEncoder.getRate() );
   }
 
   public void stop(){
     motor1.set(ControlMode.PercentOutput, 0);
+  }
+
+  public double getSpeed(){
+    return motor1.getMotorOutputVoltage();
   }
 
 
