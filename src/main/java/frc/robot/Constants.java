@@ -26,17 +26,17 @@ public class Constants {
     public static final int CARWASH_VICTOR1 = 7;
     public static final int CARWASH_VICTOR2 = 6;
 
-    public static final int PRESHOOTER_VICTOR1 = 8;
-    public static final int PRESHOOTER_VICTOR2 = 9;
+    public static final int PRESHOOTER_VICTOR1 = 9;
+    public static final int PRESHOOTER_VICTOR2 = 8;
 
     
-    public static final int INTAKE_DOUBLESOLENOID_FRONT_PISTONS1 = 0;
-    public static final int INTAKE_DOUBLESOLENOID_FRONT_PISTONS2 = 1;
-    public static final int DOUBLESOLENOID_DRIVE1 = 2;
-    public static final int DOUBLESOLENOID_DRIVE2 = 3;
+    public static final int INTAKE_DOUBLESOLENOID_FRONT_PISTONS1 = 2;
+    public static final int INTAKE_DOUBLESOLENOID_FRONT_PISTONS2 = 3;
+    public static final int DOUBLESOLENOID_DRIVE1 = 0;
+    public static final int DOUBLESOLENOID_DRIVE2 = 1;
 
-    public static final int LAUNCHER1 =26;
-    public static final int LAUNCHER2 = 29;
+    public static final int LAUNCHER1 = 12;
+    public static final int LAUNCHER2 = 13;
 
 
     public static final int DRIVER_PORT = 0;
@@ -47,16 +47,16 @@ public class Constants {
 	public static int DRIVER_RIGHT_X = 4;
     public static int DRIVER_RIGHT_Y = 5;
 
-    public static int OPERATOR_PINK = 1;
-    public static int OPERATOR_PURPLE = 2;
-    public static int OPERATOR_RED = 3;
+    public static int OPERATOR_PINK = 3;
+    public static int OPERATOR_PURPLE = 1;
+    public static int OPERATOR_RED = 2;
     public static int OPERATOR_GREEN = 4;
     public static int OPERATOR_LEFT_TOP_GRAY = 5;
     public static int OPERATOR_RIGHT_TOP_GRAY = 6;
-    public static int OPERATOR_LEFT_BOTTOM_GRAY = 7;
+    public static int OPERATOR_LEFT_BOTTOM_GRAY = 9;
     public static int OPERATOR_RIGHT_BOTTOM_GRAY = 8;
-    public static int LITTLE_GRAY_SHARE = 9;
-    public static int LITTLE_GRAY_OPTION = 10;
+    public static int LITTLE_GRAY_SHARE = 7;
+    public static int LITTLE_GRAY_OPTION = 8;
     public static int LITTLE_GRAY_HOME = 13;
 
     public static final int A_BUTTON = 1;

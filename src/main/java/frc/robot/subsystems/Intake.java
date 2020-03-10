@@ -34,12 +34,12 @@ public class Intake extends SubsystemBase {
 
   public void move(double speed){
     //System.out.println("speed:" + speed);
-    rollyBar.set(ControlMode.PercentOutput, -speed);
+    rollyBar.set(ControlMode.PercentOutput, speed);
   }
 
   public void move(){
     //System.out.println("speed:" + speed);
-    rollyBar.set(ControlMode.PercentOutput,-.75);
+    rollyBar.set(ControlMode.PercentOutput,.75);
   }
 
   public void stop(){
@@ -65,6 +65,13 @@ public class Intake extends SubsystemBase {
   public boolean getIsOpen(){
     return isOpen;
   }
+
+  public void openmove() {
+    pistons.set(DoubleSolenoid.Value.kForward);
+    rollyBar.set(ControlMode.PercentOutput,.75);
+    isOpen = true;
+    
+	}
 
 
 

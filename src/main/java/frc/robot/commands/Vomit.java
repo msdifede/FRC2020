@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.CarWash;
+import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.PreShooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class ShootBalls extends CommandBase {
+public class Vomit extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Launcher launcher;
   private final PreShooter preShooter;
@@ -26,7 +27,7 @@ public class ShootBalls extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShootBalls(Launcher launcher, PreShooter preShooter, CarWash carWash) {
+  public Vomit(Launcher launcher, PreShooter preShooter, CarWash carWash) {
     this.launcher = launcher;
     this.preShooter = preShooter;
     this.carWash = carWash;
@@ -40,21 +41,15 @@ public class ShootBalls extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    launcher.spin();
+    launcher.spin(.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-  if( launcher.atSetpoint() ){
-     // preShooter.moveExitMotor(1);
-      preShooter.moveEntryMotor(1);
+      preShooter.moveExitMotor(1);
+      preShooter.moveEntryMotor(.5);
       carWash.move();
-    }else{
-      preShooter.moveEntryMotor(0);
-      carWash.stop();
-    }
   }
 
   // Called once the command ends or is interrupted.

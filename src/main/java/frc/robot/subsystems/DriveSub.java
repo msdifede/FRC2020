@@ -9,27 +9,29 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSub extends SubsystemBase {
 
-  private TalonFX frontRightMotor;
-  private TalonFX frontLeftMotor;
-  private TalonFX backRightMotor;
-  private TalonFX backLeftMotor;
+  private WPI_TalonFX frontRightMotor;
+  private WPI_TalonFX frontLeftMotor;
+  private WPI_TalonFX backRightMotor;
+  private WPI_TalonFX backLeftMotor;
   private DoubleSolenoid shifters;
   private Boolean isHighGear;
   private AHRS ahrs;
+ // private DifferentialDrive dDrive;
 
   /**
    * Creates a new ExampleSubsystem.
    */
-  public DriveSub(TalonFX fr, TalonFX fl, TalonFX br, TalonFX bl, DoubleSolenoid s) {
+  public DriveSub(WPI_TalonFX fr, WPI_TalonFX fl, WPI_TalonFX br, WPI_TalonFX bl, DoubleSolenoid s) {
     super();
     frontRightMotor = fr;
     frontLeftMotor = fl;
@@ -41,10 +43,12 @@ public class DriveSub extends SubsystemBase {
     backLeftMotor.follow(frontLeftMotor);
 
     frontLeftMotor.setInverted(true);
-    frontRightMotor.setInverted(false);
+    frontRightMotor.setInverted(true);
 
     backRightMotor.setInverted(InvertType.FollowMaster);
     backLeftMotor.setInverted(InvertType.FollowMaster);
+
+   // dDrive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
 
     setHighGear();
 
@@ -56,8 +60,10 @@ public class DriveSub extends SubsystemBase {
   }
 
   public void TeleOpDrive(double left, double right){
-    frontLeftMotor.set(ControlMode.PercentOutput, left);
-    frontRightMotor.set(ControlMode.PercentOutput, right);
+     frontLeftMotor.set(ControlMode.PercentOutput, left);
+     frontRightMotor.set(ControlMode.PercentOutput, -right);
+
+   // dDrive.tankDrive(left, right);
     SmartDashboard.putNumber("Gyro", getAngle());
   }
 

@@ -32,7 +32,7 @@ public class Turret extends SubsystemBase {
 
   public int getPosition(){
     //return motor.getActiveTrajectoryPosition();
-   return motor.getSelectedSensorPosition();
+   return (int)(motor.getSelectedSensorPosition()/85.33);
    // return 1;
   }
 
@@ -45,4 +45,5 @@ public class Turret extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 }

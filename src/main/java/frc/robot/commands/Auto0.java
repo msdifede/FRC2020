@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 /**
  * An example command that uses an example subsystem.
  */
-public class Auto extends SequentialCommandGroup {
+public class Auto0 extends SequentialCommandGroup {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
   /**
@@ -31,16 +31,18 @@ public class Auto extends SequentialCommandGroup {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Auto(DriveSub drive, Launcher launcher, PreShooter preShooter, CarWash carWash, Turret turret,
+  public Auto0(DriveSub drive, Launcher launcher, PreShooter preShooter, CarWash carWash, Turret turret,
       LimeLight limelight) {
 
     addCommands(
+      
+      new InstantCommand(drive::resetGyro,drive),
         new ParallelCommandGroup(
           new RunCommand(() -> limelight.setPipeline(0), limelight).withTimeout(.1), 
-          new InstantCommand(launcher::spin, launcher)
-      ),
+          new InstantCommand(launcher::spin, launcher) 
+        ).withTimeout(.5), 
       new AimTurret(turret, limelight),
-      new ShootBalls( launcher, preShooter, carWash),
+      new ShootBalls( launcher, preShooter, carWash).withTimeout(4),
       new DriveCommand(drive).withTimeout(.5)
     );
     // Use addRequirements() here to declare subsystem dependencies.

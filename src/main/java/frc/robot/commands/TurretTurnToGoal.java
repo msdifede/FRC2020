@@ -7,67 +7,70 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.CarWash;
-import frc.robot.subsystems.Launcher;
-import frc.robot.subsystems.PreShooter;
+import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ShootBalls extends CommandBase {
+public class TurretTurnToGoal extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Launcher launcher;
-  private final PreShooter preShooter;
-  private final CarWash carWash;
+  private final Turret turret;
+  private final DriveSub driveSub;
+  private int currentAngle;
+  private int targetAngle;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShootBalls(Launcher launcher, PreShooter preShooter, CarWash carWash) {
-    this.launcher = launcher;
-    this.preShooter = preShooter;
-    this.carWash = carWash;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(launcher);
-    addRequirements(preShooter);
-    addRequirements(carWash);
+  public TurretTurnToGoal(Turret turret, DriveSub driveSub){
+    this.turret = turret;
+    this.driveSub = driveSub;
+    
 
+   // this.currentAngle = turret.getPosition();
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(turret);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    launcher.spin();
+  public void initialize(){
+    this.currentAngle = turret.getPosition();
+    this.targetAngle = -(int)driveSub.getAngle();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-  if( launcher.atSetpoint() ){
-     // preShooter.moveExitMotor(1);
-      preShooter.moveEntryMotor(1);
-      carWash.move();
-    }else{
-      preShooter.moveEntryMotor(0);
-      carWash.stop();
+    currentAngle = turret.getPosition();
+    if(targetAngle > currentAngle){
+      turret.move(-.6);
     }
+    if(targetAngle < currentAngle){
+      turret.move(.6);
+    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    preShooter.stop();
-    carWash.stop();
-    launcher.stop();
+    turret.move(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(targetAngle==currentAngle){
+      return true;
+
+    }
     return false;
   }
 }

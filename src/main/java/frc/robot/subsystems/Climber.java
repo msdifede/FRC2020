@@ -9,12 +9,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
-  VictorSPX motor;
-  public Climber(VictorSPX m) {
+  WPI_TalonFX motor;
+  public Climber( WPI_TalonFX m) {
     motor = m;
 
   }
@@ -26,6 +27,14 @@ public class Climber extends SubsystemBase {
 
   public void move(double speed){
     motor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void move(){
+    motor.set(ControlMode.PercentOutput, .8);
+  }//changed
+
+  public void stop(){
+    motor.set(ControlMode.PercentOutput, 0);
   }
 
 

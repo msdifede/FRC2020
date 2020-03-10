@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class CarWash extends SubsystemBase {
   private VictorSPX motor1;
   private VictorSPX motor2;
+  
   public CarWash(VictorSPX m1, VictorSPX m2) {
     motor1 = m1;
     motor2= m2;
-
   }
 
   @Override
@@ -27,13 +27,13 @@ public class CarWash extends SubsystemBase {
   }
 
   public void move(double speed){
-    motor1.set(ControlMode.PercentOutput, speed);
-    motor2.set(ControlMode.PercentOutput, -speed);
+    motor1.set(ControlMode.PercentOutput, -speed);
+    motor2.set(ControlMode.PercentOutput, speed);
   }
  
   public void move(){
-    motor1.set(ControlMode.PercentOutput, .5);
-    motor2.set(ControlMode.PercentOutput, -.5);
+    motor1.set(ControlMode.PercentOutput, -.5);
+    motor2.set(ControlMode.PercentOutput, .5);
   }
 
   public void stop(){

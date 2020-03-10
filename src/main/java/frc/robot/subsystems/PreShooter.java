@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PreShooter extends SubsystemBase {
   private VictorSPX entryMotor;
-  private VictorSPX exitMotor;
+  //private VictorSPX exitMotor;
+  
   public PreShooter(VictorSPX m1, VictorSPX m2) {
     entryMotor = m1;
-    exitMotor = m2;
-
+    //exitMotor = m2;
+    entryMotor.setInverted(true);
   }
 
   @Override
@@ -28,7 +29,7 @@ public class PreShooter extends SubsystemBase {
 
   public void move(double speed){
     entryMotor.set(ControlMode.PercentOutput, -speed);
-    exitMotor.set(ControlMode.PercentOutput, speed);
+   // exitMotor.set(ControlMode.PercentOutput, speed);
   }
 
   public void moveEntryMotor( double speed ){
@@ -36,17 +37,16 @@ public class PreShooter extends SubsystemBase {
   }
 
   public void moveExitMotor( double speed ){
-    exitMotor.set(ControlMode.PercentOutput, speed);
+    //exitMotor.set(ControlMode.PercentOutput, speed);
   }
 
-
   public void move(){
-    entryMotor.set(ControlMode.PercentOutput, -.5);
-    exitMotor.set(ControlMode.PercentOutput, .5);
+    entryMotor.set(ControlMode.PercentOutput, -1);
+   // exitMotor.set(ControlMode.PercentOutput, .5);
   }
 
   public void stop(){
     entryMotor.set(ControlMode.PercentOutput, 0);
-    exitMotor.set(ControlMode.PercentOutput, 0);
+    //exitMotor.set(ControlMode.PercentOutput, 0);
   }
 }
