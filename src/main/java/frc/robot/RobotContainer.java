@@ -177,10 +177,11 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    if(SmartDashboard.getNumber("SelectAuto", 0) == 1)
-    {return new Auto1(drivetrain);}
-    else{
-    return new Auto0(drivetrain, launcher, preShooter, carWash, turret, limelight);}
+    //if(SmartDashboard.getNumber("SelectAuto", 0) == 1)
+    //{return new Auto1(drivetrain);}
+    //else{
+    //return new Auto0(drivetrain, launcher, preShooter, carWash, turret, limelight);}
+    return new Auto1(drivetrain);
   }
 
   public Command getTeleopInitCommand() {
